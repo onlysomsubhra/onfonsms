@@ -3,8 +3,8 @@ const onfon = require('../index');
 const Username = 'xxxx';
 const Password = 'xxxx';
 const PhoneNumber = '254xxxxxxxxx';
-const Message = 'npm test sms';
 const SenderId = 'YYYY';
+const Message = 'Onfon test sms';
 
 //const min=1000; 
 //const max=9999;  
@@ -20,11 +20,29 @@ const obj = {
     message: Message
 };
 
-onfon(obj, function(err,res) {
+new Promise((resolve, reject) => {
+    onfon(obj)
+    .then(res => {
+        if(res.type == 'error'){
+            console.log('error: ', res);
+            //return;
+            resolve(false);
+        } else {
+            console.log('success: ',res);
+            resolve(true);
+        }
+    })
+    .catch(err => {
+        console.log('error: ', err);
+        reject(err);
+    });
+});
+
+/*onfon(obj, function(err,res) {
     if(err){
         console.log('error',err);
         return;
     }
 
     console.log('success',res);
-});
+});*/

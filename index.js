@@ -71,7 +71,7 @@ function create(obj, cb) {
                 '</soapenv:Body>'+
                 '</soapenv:Envelope>';
 
-    superagent
+    /*superagent
         .post(url)
         .send(xml) // query string
         .timeout({
@@ -97,7 +97,37 @@ function create(obj, cb) {
         })
         .catch(err=>{
             cb(err,null)
-        });
+        });*/
+
+    let response = {};
+    return new Promise((resolve, reject) => {
+        superagent
+            .post(url)
+            .send(xml) // query string
+            .timeout({
+                response: timeout,  // Wait 5 seconds for the server to start sending,
+                deadline: 60000, // but allow 1 minute for the file to finish loading.
+            })
+            .set(headers)
+            .then((res) => {
+                // Do something
+                const apiRes = res.text;
+            
+                var xmlDoc = new xmlParse.DOM(xmlParse.parse(apiRes));
+                var StatusRecord = xmlDoc.document.getElementsByTagName("StatusRecord")[0];
+                var StatusCode = StatusRecord.childNodes[0].innerXML;
+                var StatusError = StatusRecord.childNodes[1].innerXML;
+                var StatusMessage = StatusRecord.childNodes[2].innerXML;
+                //console.log('res: ' + JSON.stringify(StatusCode, null, 2));
+                if(StatusCode == 0) {
+                    response = {'type':'success', 'code':StatusCode, 'responce':apiRes};
+                } else {
+                    response = {'type':'error', 'code':StatusCode, 'responce':apiRes};
+                }
+                resolve(response);
+            })
+            .catch(err => reject(err));
+    });   
 }
 
 module.exports = create;
