@@ -37,12 +37,3 @@ new Promise((resolve, reject) => {
         reject(err);
     });
 });
-
-/*onfon(obj, function(err,res) {
-    if(err){
-        console.log('error',err);
-        return;
-    }
-
-    console.log('success',res);
-});*/
