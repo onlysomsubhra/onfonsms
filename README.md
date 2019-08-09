@@ -52,6 +52,6 @@ new Promise((resolve, reject) => {
 
 ```
 {    
-    responce: 'xml response from onfon end' 
+    response: 'xml response from onfon end' 
 }
 ```

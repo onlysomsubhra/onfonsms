@@ -82,21 +82,8 @@ function create(obj, cb) {
             })
             .set(headers)
             .then((res) => {
-                // Do something
-                /*const apiRes = res.text;
-            
-                var xmlDoc = new xmlParse.DOM(xmlParse.parse(apiRes));
-                var StatusRecord = xmlDoc.document.getElementsByTagName("StatusRecord")[0];
-                var StatusCode = StatusRecord.childNodes[0].innerXML;
-                var StatusError = StatusRecord.childNodes[1].innerXML;
-                var StatusMessage = StatusRecord.childNodes[2].innerXML;
-                //console.log('res: ' + JSON.stringify(StatusCode, null, 2));
-                if(StatusCode == 0) {
-                    response = {'type':'success', 'code':StatusCode, 'responce':apiRes};
-                } else {
-                    response = {'type':'error', 'code':StatusCode, 'responce':apiRes};
-                }*/
-                resolve({'responce': res});
+                // Do something                
+                resolve({'response': res});
             })
             .catch(err => reject(err));
     });   

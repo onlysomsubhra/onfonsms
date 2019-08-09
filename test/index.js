@@ -22,15 +22,7 @@ const obj = {
 
 new Promise((resolve, reject) => {
     onfon(obj)
-    .then(res => {
-        /*if(res.type == 'error'){
-            console.log('error: ', res);
-            //return;
-            resolve(false);
-        } else {
-            console.log('success: ',res);
-            resolve(true);
-        }*/
+    .then(res => {        
 	resolve(true);
     })
     .catch(err => {
