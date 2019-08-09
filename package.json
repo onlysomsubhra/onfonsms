@@ -1,6 +1,6 @@
 {
   "name": "onfonsms",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "onfon sms",
   "main": "index.js",
   "scripts": {
