@@ -39,14 +39,7 @@ const obj = {
 new Promise((resolve, reject) => {
     onfon(obj)
     .then(res => {
-        if(res.type == 'error'){
-            console.log('error: ', res);
-            //return;
-            resolve(false);
-        } else {
-            console.log('success: ',res);
-            resolve(true);
-        }
+        resolve(true);        
     })
     .catch(err => {
         console.log('error: ', err);
@@ -55,22 +48,10 @@ new Promise((resolve, reject) => {
 });
 ```
 
-### Expected success ouput
+### Expected ouput
 
 ```
-{ 
-    type: 'success',
-    code: '0',
-    responce: 'xml response from onfon end' 
-}
-```
-
-### Expected error ouput
-
-```
-{ 
-    type: 'error',
-    code: 'AUT200',
+{    
     responce: 'xml response from onfon end' 
 }
 ```
