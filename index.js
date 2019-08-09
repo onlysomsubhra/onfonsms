@@ -24,7 +24,7 @@ function create(obj, cb) {
     
     obj = Object.assign(config,obj);
     
-    let username = obj.username,
+    var username = obj.username,
         password = obj.password,
         senderid = obj.senderid,
         smsid = obj.smsid,
@@ -71,7 +71,7 @@ function create(obj, cb) {
                 '</soapenv:Body>'+
                 '</soapenv:Envelope>';
 
-    let response = {};
+    //var response = {};
     return new Promise((resolve, reject) => {
         superagent
             .post(url)
@@ -83,7 +83,7 @@ function create(obj, cb) {
             .set(headers)
             .then((res) => {
                 // Do something
-                const apiRes = res.text;
+                /*const apiRes = res.text;
             
                 var xmlDoc = new xmlParse.DOM(xmlParse.parse(apiRes));
                 var StatusRecord = xmlDoc.document.getElementsByTagName("StatusRecord")[0];
@@ -95,8 +95,8 @@ function create(obj, cb) {
                     response = {'type':'success', 'code':StatusCode, 'responce':apiRes};
                 } else {
                     response = {'type':'error', 'code':StatusCode, 'responce':apiRes};
-                }
-                resolve(response);
+                }*/
+                resolve({'responce': res});
             })
             .catch(err => reject(err));
     });   
